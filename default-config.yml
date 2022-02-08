@@ -139,7 +139,7 @@ notifiers:
 
   webhook:
     required:
-      url: https://webhook.site/28a77dbd-b0b7-493b-9bb3-aad019d0c963
+      url: "https://binance-signal.free.mockoapp.net/webhook"
       # url: http://10.5.50.69:3000/webhook
     optional:
       username: null
