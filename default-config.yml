@@ -129,10 +129,18 @@ crossovers:
           crossed_signal: macdsignal
 
 notifiers:
-    telegram:
-        required:
-            token: 4318021XXXX
-            chat_id: -300XXXXXXX
-        optional:
-            parse_mode: html
-            template: "[{{analysis.config.candle_period}} / {{analysis.config.period_count}}] {{exchange}}-{{market}}-{{indicator}}-{{indicator_number}} is {{status}}! ({{values}}){{ '\n' -}}"
+  telegram:
+      required:
+          token: 4318021XXXX
+          chat_id: -300XXXXXXX
+      optional:
+          parse_mode: html
+          template: "[{{analysis.config.candle_period}} / {{analysis.config.period_count}}] {{exchange}}-{{market}}-{{indicator}}-{{indicator_number}} is {{status}}! ({{values}}){{ '\n' -}}"
+
+  webhook:
+    required:
+      url: https://webhook.site/28a77dbd-b0b7-493b-9bb3-aad019d0c963
+      # url: http://10.5.50.69:3000/webhook
+    optional:
+      username: null
+      password: null
