@@ -28,7 +28,8 @@ class ExchangeInterface():
         for exchange in exchange_config:
             if exchange_config[exchange]['required']['enabled']:
                 new_exchange = getattr(ccxt, exchange)({
-                    "enableRateLimit": True
+                    "enableRateLimit": True,
+                    "options": {'defaultType': 'future'}
                 })
 
                 # sets up api permissions for user if given
