@@ -1,0 +1,15 @@
+Cython
+twilio
+ccxt
+structlog
+python-json-logger
+stockstats
+TA-lib
+slackweb
+tabulate
+slackweb
+python-telegram-bot
+webcord
+jinja2
+PyYAML
+newtulipy
