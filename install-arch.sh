@@ -1,4 +1,4 @@
-sudo pacman -S base-devel \
+sudo pacman -S --overwrite="*" base-devel \
     python \
     python-numpy \
     python-pandas \
