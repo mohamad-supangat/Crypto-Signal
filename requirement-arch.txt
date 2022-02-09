@@ -1,0 +1,9 @@
+Cython
+twilio
+ccxt
+python-json-logger
+stockstats
+slackweb
+python-telegram-bot
+webcord
+newtulipy
