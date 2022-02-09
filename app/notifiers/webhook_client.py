@@ -6,6 +6,7 @@ import requests
 
 from notifiers.utils import NotifierUtils
 
+
 class WebhookNotifier(NotifierUtils):
     """Class for handling webhook notifications
     """
@@ -16,7 +17,6 @@ class WebhookNotifier(NotifierUtils):
         self.username = username
         self.password = password
 
-
     def notify(self, message):
         """Sends the message.
 
@@ -24,10 +24,14 @@ class WebhookNotifier(NotifierUtils):
             message (str): The message to send.
         """
 
+        data = {'messages': json.dumps(messages)}
+
         if self.username and self.password:
-            request = requests.post(self.url, json=message, auth=(self.username, self.password))
+            request = requests.post(
+                self.url, data=data, auth=(self.username, self.password))
         else:
-            request = requests.post(self.url, json=message)
+            request = requests.post(self.url, data=data)
 
         if not request.status_code == requests.codes.ok:
-            self.logger.error("Request failed: %s - %s", request.status_code, request.content)
+            self.logger.error("Request failed: %s - %s",
+                              request.status_code, request.content)
