@@ -46,6 +46,13 @@ The commands listed below are intended to be run in a terminal.
 
 1. When you want to update the application run `docker pull shadowreaver/crypto-signal:master`
 
+
+### install from source
+1. Use arch
+1. Run install-arch.sh
+1. run pip -r requirement-arch.txt
+1. run python app/app.py
+
 ### Configuring config.yml
 
 For a list of all possible options for config.yml and some example configurations look [here](docs/config.md)
