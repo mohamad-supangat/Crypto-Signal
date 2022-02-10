@@ -5,9 +5,13 @@
 settings:
   log_mode: text
   log_level: INFO
+  enable_charts: false
   output_mode: cli
   update_interval: 300
+  start_worker_interval: 60
+  market_data_chunk_size: 20
   market_pairs: null
+  timezone: UTC
 
 exchanges: null
 
@@ -32,8 +36,9 @@ notifiers:
       webhook: null
     optional:
       template: "{{exchange}}-{{market}}-{{indicator}}-{{indicator_number}} is {{status}}!{{ '\n' -}}"
-  gmail:
+  email:
     required:
+      smtp_server: null
       username: null
       password: null
       destination_emails: null
@@ -128,8 +133,27 @@ indicators:
       hot: true
       cold: true
       candle_period: 1d
-
+  iiv:
+    - enabled: true
+      alert_enabled: true
+      alert_frequency: always
+      signal:
+        - iiv
+      hot: 5
+      cold: 0
+      candle_period: 5m
 informants:
+  lrsi:
+    - enabled: true
+      alert_enabled: true
+      signal:
+        - lrsi
+      candle_period: 4h
+    - enabled: true
+      alert_enabled: true
+      signal:
+        - lrsi
+      candle_period: 1d  
   vwap:
     - enabled: true
       signal:

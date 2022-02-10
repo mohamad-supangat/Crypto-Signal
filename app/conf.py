@@ -6,11 +6,6 @@ import os
 import ccxt
 import yaml
 
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-except ImportError:
-    from yaml import Loader, Dumper
-
 
 class Configuration():
     """Parses the environment configuration to create the config objects.
@@ -21,11 +16,11 @@ class Configuration():
         """
 
         with open('defaults.yml', 'r') as config_file:
-            default_config = yaml.load(config_file, Loader=Loader)
+            default_config = yaml.load(config_file, Loader=yaml.FullLoader)
 
         if os.path.isfile('config.yml'):
             with open('config.yml', 'r') as config_file:
-                user_config = yaml.load(config_file, Loader=Loader)
+                user_config = yaml.load(config_file, Loader=yaml.FullLoader)
         else:
             user_config = dict()
 
@@ -63,6 +58,11 @@ class Configuration():
             self.exchanges = user_config['exchanges']
         else:
             self.exchanges = dict()
+        
+        if 'conditionals' in user_config:
+            self.conditionals = user_config['conditionals']
+        else:
+            self.conditionals = None
 
         for exchange in ccxt.exchanges:
             if exchange not in self.exchanges:
