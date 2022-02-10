@@ -7,3 +7,5 @@ slackweb
 python-telegram-bot
 webcord
 newtulipy
+tenacity
+TA-lib
