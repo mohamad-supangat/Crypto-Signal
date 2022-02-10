@@ -10,8 +10,9 @@ sudo pacman -S --overwrite="*" base-devel \
     python-structlog \
     python-tabulate \
     python-jinja \
-    python-yaml
-
+    python-yaml \
+    python-matplotlib \
+    python-scipy
 
 
 cd lib/
