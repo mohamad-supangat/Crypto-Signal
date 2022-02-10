@@ -5,6 +5,7 @@ import structlog
 import requests
 
 from notifiers.utils import NotifierUtils
+import json
 
 
 class WebhookNotifier(NotifierUtils):
