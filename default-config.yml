@@ -1,6 +1,6 @@
 settings:
     log_level: INFO
-    update_interval: 250
+    update_interval: 300
     market_pairs:
         - 1000SHIB/USDT
 
