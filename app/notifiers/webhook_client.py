@@ -18,7 +18,7 @@ class WebhookNotifier(NotifierUtils):
         self.username = username
         self.password = password
 
-    def notify(self, message):
+    def notify(self, messages):
         """Sends the message.
 
         Args:
