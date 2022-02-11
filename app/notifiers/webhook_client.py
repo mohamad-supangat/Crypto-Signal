@@ -29,25 +29,27 @@ class WebhookNotifier(NotifierUtils):
 
         #market_pair = market_pair.replace('/', '_').lower()
         #chart_file = '{}/{}_{}_{}.png'.format('./charts', exchange, market_pair, candle_period)
+        try:
+            data = {'messages': json.dumps(messages)}
+            chart_file = False
+            if chart_file and os.path.exists(chart_file):
+                files = {'chart': open(chart_file, 'rb')}
 
-        data = {'messages': json.dumps(messages)}
-        chart_file = False
-        if chart_file and os.path.exists(chart_file):
-            files = {'chart': open(chart_file, 'rb')}
-
-            if self.username and self.password:
-                request = requests.post(
-                    self.url, files=files, data=data, auth=(self.username, self.password))
+                if self.username and self.password:
+                    request = requests.post(
+                        self.url, files=files, data=data, auth=(self.username, self.password))
+                else:
+                    request = requests.post(self.url, files=files, data=data)
             else:
-                request = requests.post(self.url, files=files, data=data)
-        else:
-            if self.username and self.password:
-                request = requests.post(
-                    self.url, data=data, auth=(self.username, self.password))
-            else:
-                request = requests.post(self.url, data=data)
+                if self.username and self.password:
+                    request = requests.post(
+                        self.url, data=data, auth=(self.username, self.password))
+                else:
+                    request = requests.post(self.url, data=data)
 
-        if not request.status_code == requests.codes.ok:
-            self.logger.error("Request failed: %s - %s",
-                              request.status_code, request.content)
-
+            if not request.status_code == requests.codes.ok:
+                self.logger.error("Request failed: %s - %s",
+                                  request.status_code, request.content)
+        except Exception:
+            print('webhook client error')
+            pass
