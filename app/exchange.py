@@ -38,6 +38,10 @@ class ExchangeInterface():
                         parameters['options'] = {'defaultType': 'future'}
                 new_exchange = getattr(ccxt, exchange)(parameters)
 
+                if 'sandbox' in exchange_config[exchange].keys():
+                    if exchange_config[exchange]['sandbox'] == True:
+                        new_exchange.set_sandbox_mode(True)
+
                 # sets up api permissions for user if given
                 if new_exchange:
                     self.exchanges[new_exchange.id] = new_exchange
